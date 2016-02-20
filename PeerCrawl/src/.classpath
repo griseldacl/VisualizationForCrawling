@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/MRJToolkitStubs.zip"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/commons-httpclient-3.0-rc3.zip"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/commons-logging.zip"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/forms-1.0.5.zip"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/inetfactory.jar"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/jaxb.zip"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/jaxp.zip"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/junit.zip"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/log4j-1.2.12.jar"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/looks-1.3.2.zip"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/MRJ141Stubs.zip"/>
+	<classpathentry kind="lib" path="C:/summer06/peercrawl/lib/MRJAdapter.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java 1.5"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

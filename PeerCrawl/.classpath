@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="*.zip" kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-logging.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/forms-1.0.5.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/inetfactory.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jaxb.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/jaxp.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/junit.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/log4j-1.2.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/looks-1.3.2.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/MRJ141Stubs.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/MRJAdapter.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/MRJToolkitStubs.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-httpclient-3.0-rc3.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/itext-1.2.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

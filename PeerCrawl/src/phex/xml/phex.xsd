@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="1.0" 
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xjc ="http://java.sun.com/xml/ns/jaxb/xjc"
+            jxb:extensionBindingPrefixes="xjc">
+	<xsd:annotation>
+		<xsd:appinfo>
+			<jxb:globalBindings collectionType="java.util.ArrayList" fixedAttributeAsConstantProperty="true" typesafeEnumBase="xsd:NCName" typesafeEnumMemberName="generateError">
+			  <xjc:noValidator/>
+			  <xjc:noValidatingUnmarshaller/>
+			</jxb:globalBindings>
+			<jxb:schemaBindings>
+				<jxb:package name="phex.xml"/>
+				<jxb:nameXmlTransform>
+					<jxb:elementName suffix="Element"/>
+				</jxb:nameXmlTransform>
+			</jxb:schemaBindings>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:element name="phex" type="XJBPhex"/>
+	<xsd:complexType name="XJBPhex">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="search-filters" type="XJBSearchFilters"/>
+			<xsd:element minOccurs="0" name="gui-settings" type="XJBGUISettings"/>
+			<xsd:element minOccurs="0" name="sharedLibrary" type="XJBSharedLibrary"/>
+			<xsd:element minOccurs="0" name="update-request" type="XJBUpdateRequest"/>
+			<xsd:element minOccurs="0" name="update-response" type="XJBUpdateResponse"/>
+			<xsd:element minOccurs="0" name="swDownloadList" type="XJBSWDownloadList">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="SWDownloadList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="security" type="XJBSecurity"/>
+			<xsd:element minOccurs="0" name="favorites-list" type="XJBFavoritesList"/>
+		</xsd:sequence>
+		<xsd:attribute name="phex-version" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jxb:property name="phexVersion"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="XJBUpdateRequest">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="hostid" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="current-version" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="startup-count" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="laf-used" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="operating-system" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="java-version" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="avg-uptime" type="xsd:long"/>
+			<xsd:element minOccurs="0" name="daily-avg-uptime" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="download-count" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="upload-count" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="shared-files" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="shared-size" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="last-check-version" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="last-info-id" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="show-beta-info" type="xsd:boolean"/>
+			<xsd:element minOccurs="0" name="error-log" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBUpdateResponse">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="version">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="versionList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="0" name="text" type="xsd:string"/>
+					</xsd:sequence>
+					<xsd:attribute name="id" type="xsd:string" use="required"/>
+					<xsd:attribute name="isBeta" type="xsd:boolean" use="required">
+						<xsd:annotation>
+							<xsd:appinfo>
+								<jxb:property name="beta"/>
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="info">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="infoList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="0" name="header" type="xsd:string"/>
+						<xsd:element minOccurs="0" name="text" type="xsd:string"/>
+					</xsd:sequence>
+					<xsd:attribute name="id" type="xsd:string" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBSearchFilters">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="search-filter" type="XJBSearchFilter">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="searchFilterList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBSearchFilter">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="refine-text" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="min-file-size" type="xsd:long"/>
+			<xsd:element minOccurs="0" name="min-host-rating" type="xsd:short"/>
+			<xsd:element minOccurs="0" name="min-host-speed" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="last-time-used" type="xsd:long"/>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute default="any" name="media-type" type="XJBMediaType" use="optional"/>
+	</xsd:complexType>
+	<xsd:simpleType name="XJBMediaType">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<jxb:typesafeEnumClass/>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="any"/>
+			<xsd:enumeration value="audio"/>
+			<xsd:enumeration value="video"/>
+			<xsd:enumeration value="program"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="XJBGUISettings">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="look-and-feel-class" type="xsd:string"/>
+			<xsd:element default="true" minOccurs="0" name="is-toolbar-visible" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property generateIsSetMethod="true" name="toolbarVisible"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		  <xsd:element default="false" minOccurs="0" name="is-log-bandwidth-slider-used" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property generateIsSetMethod="true" name="logBandwidthSliderUsed"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+		  </xsd:element>
+		  <xsd:element default="true" minOccurs="0" name="show-respect-copyright-notice" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property generateIsSetMethod="true" name="respectCopyrightNoticeShown"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+		  </xsd:element>
+			<xsd:element minOccurs="0" name="window-posX" type="xsd:int">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property generateIsSetMethod="true"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="window-posY" type="xsd:int">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property generateIsSetMethod="true"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="window-width" type="xsd:int">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property generateIsSetMethod="true"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="window-height" type="xsd:int">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property generateIsSetMethod="true"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="tab" type="XJBGUITab">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="tabList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="table-list" type="XJBGUITableList"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBGUITab">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="isVisible" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property generateIsSetMethod="true" name="visible"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="tabID" type="xsd:int" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="XJBGUITableList">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="table" type="XJBGUITable">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="tableList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="showVerticalLines" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jxb:property generateIsSetMethod="true"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="showHorizontalLines" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jxb:property generateIsSetMethod="true"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="XJBGUITable">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="tableIdentifier" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="column-list" type="XJBGUITableColumnList">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="tableColumnList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBGUITableColumnList">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="table-column" type="XJBGUITableColumn">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="tableColumnList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBGUITableColumn">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="columnID" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="isVisible" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="visible"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="visibleIndex" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="width" type="xsd:int"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBSharedLibrary">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="SF" type="XJBSharedFile">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="sharedFileList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBSharedFile">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="FID" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="fileName"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="SHA1" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="TxRH" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="thexRootHash"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="TxD" type="xsd:int">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="thexTreeDepth"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="TxLLN" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="thexLowestLevelNodes"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="LM" type="xsd:long">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="lastModified"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="LS" type="xsd:int">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="lastSeen"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="HC" type="xsd:int">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="hitCount"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="UC" type="xsd:int">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="uploadCount"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="AltLoc" type="XJBAlternateLocation"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBSWDownloadList">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="swDownloadFile" type="XJBSWDownloadFile">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="SWDownloadFileList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBSWDownloadFile">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="localfilename" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="localFileName"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="incomplete-file-name" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="incompleteFileName"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="searchterm" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="searchTerm"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="filesize" type="xsd:long">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="fileSize"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="file-urn" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="fileURN"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="scope-strategy" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="scopeSelectionStrategy"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="status" type="xsd:short"/>
+			<xsd:element minOccurs="0" name="created-time" type="xsd:long">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="createdTime"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="modified-time" type="xsd:long">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="modifiedTime"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="candidate" type="XJBSWDownloadCandidate">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="candidateList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="finished-scopes" type="XJBDownloadScope">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="finishedScopesList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="segment" type="XJBSWDownloadSegment">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="segmentList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBSWDownloadCandidate">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="guid" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="GUID"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="fileindex" type="xsd:long">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="fileIndex"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="last-connect" type="xsd:long">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property generateIsSetMethod="true" name="lastConnectionTime"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="filename" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="fileName"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="download-uri" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="downloadURI"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="remotehost" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="remoteHost"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="connectionFailedRepetition" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="rating" type="xsd:short">
+					<xsd:annotation> 
+			 			<xsd:appinfo>
+			    		<jxb:class>
+								<jxb:javadoc><![CDATA[@deprecated since Phex 2.6.5.90. The field is only still
+									here because JAXB cant ignore unknown elements and we like to be able to update
+									from old releases.]]></jxb:javadoc>
+			    		</jxb:class>
+			  		</xsd:appinfo>
+		  	  </xsd:annotation>
+		  </xsd:element>
+			<xsd:element minOccurs="0" name="vendor" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="isPushNeeded" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="pushNeeded"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="isThexSupported" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="thexSupported"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="isChatSupported" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="chatSupported"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBDownloadScope">
+			<xsd:attribute name="start" type="xsd:long" use="optional" />
+			<xsd:attribute name="end"   type="xsd:long" use="optional" />
+	</xsd:complexType>
+	<xsd:complexType name="XJBSWDownloadSegment">
+	  <xsd:annotation> 
+ 			<xsd:appinfo>
+    		<jxb:class>
+					<jxb:javadoc><![CDATA[@deprecated since Phex 2.6.5.90 use XJBDownloadScope]]></jxb:javadoc>
+    		</jxb:class>
+  		</xsd:appinfo>
+  	</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="incompleteFileName" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="segmentNumber" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="startPosition" type="xsd:long"/>
+			<xsd:element minOccurs="0" name="length" type="xsd:long"/>
+			<xsd:element minOccurs="0" name="transferred" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBAlternateLocation">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="host-address" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="hostAddress"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="URN" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBSecurity">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="ip-access-rule" type="XJBIPAccessRule">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="ipAccessRuleList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBSecurityRule">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="description" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="isDenyingRule" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="denyingRule"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="isDisabled" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="disabled"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element default="false" minOccurs="0" name="isSystemRule" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="systemRule"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="triggerCount" type="xsd:int"/>
+			<xsd:element minOccurs="0" name="expiryDate" type="xsd:long"/>
+			<xsd:element minOccurs="0" name="isDeletedOnExpiry" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="deletedOnExpiry"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBIPAccessRule">
+		<xsd:complexContent>
+			<xsd:extension base="XJBSecurityRule">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="addressType" type="xsd:byte"/>
+					<xsd:element minOccurs="0" name="ip" type="xsd:hexBinary"/>
+					<xsd:element minOccurs="0" name="compareIP" type="xsd:hexBinary"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="XJBFavoritesList">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="favorite-host" type="XJBFavoriteHost">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="favoritesList"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XJBFavoriteHost">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="host-name" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="ip" type="xsd:hexBinary"/>
+      <xsd:element minOccurs="0" name="port" type="xsd:int"/>
+    </xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
